@@ -1,0 +1,173 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #ff6347; /* Tomato color */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Login & Register Section */
+.auth-background {
+    background: linear-gradient(to right, #ff6347, #ff9966);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.auth-container h2 {
+    color: #ff6347;
+    margin-bottom: 20px;
+}
+
+.auth-form {
+    margin-bottom: 30px;
+}
+
+.auth-form input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.auth-form button {
+    background-color: #ff6347;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.auth-form button:hover {
+    background-color: #e55342; /* Darker tomato */
+}
+
+/* Menu Section */
+.menu-section {
+    padding: 20px;
+    background-image: url('https://images.pexels.com/photos/616353/pexels-photo-616353.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-size: cover;
+    color: white;
+}
+
+.menu-section h2 {
+    text-align: center;
+    color: #ff6347;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.menu-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.menu-item {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    margin: 15px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.menu-item h3 {
+    color: #ff6347;
+}
+
+.menu-item button {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.menu-item button:hover {
+    background-color: #e55342;
+}
+
+/* Order Section */
+.order-section {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.order-section h2 {
+    color: #ff6347;
+    font-size: 28px;
+}
+
+.order-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.order-list li {
+    margin: 10px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.total-price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Submit Order Button Styles */
+#submit-order-btn {
+    background-color: #28a745; /* Green background */
+    color: white; /* White text */
+    padding: 15px 30px; /* Bigger padding for a larger button */
+    font-size: 18px; /* Larger font size */
+    border: none; /* Remove border */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+/* Hover Effect */
+#submit-order-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-3px); /* Slightly raise button on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+}
+

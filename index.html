@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Ordering App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to QuickBite Restaurant</h1>
+    </header>
+
+    <!-- Login & Register Section -->
+    <section id="auth-section" class="auth-background">
+        <div class="auth-container">
+            <h2>Login or Register</h2>
+            <div id="login-form" class="auth-form">
+                <h3>Login</h3>
+                <input type="text" id="login-username" placeholder="Username" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button onclick="login()">Login</button>
+            </div>
+
+            <div id="register-form" class="auth-form">
+                <h3>Register</h3>
+                <input type="text" id="register-username" placeholder="Username" required>
+                <input type="password" id="register-password" placeholder="Password" required>
+                <button onclick="register()">Register</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu and Order Section -->
+    <section id="menu" class="menu-section" style="display:none;">
+        <h2>Menu</h2>
+        <div id="menu-items" class="menu-grid">
+            <!-- Menu items will be dynamically generated here -->
+        </div>
+    </section>
+
+    <section id="order" class="order-section" style="display:none;">
+        <h2>Your Order</h2>
+        <ul id="order-list" class="order-list"></ul>
+        <p class="total-price">Total: ₹<span id="total-price">0</span></p>
+        <button id="submit-order-btn" onclick="submitOrder()">Submit Order</button>
+
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
