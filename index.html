@@ -7,8 +7,53 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="auth-background">
-        <div class="auth-container">
+    <div class="login-page-container">
+        <div class="login-content">
+            <h1>QuickBite Restaurant</h1>
+
+            <!-- User Type Selection -->
+            <section id="user-selection" class="user-selection-section">
+                <h2>Select User Type</h2>
+                <div class="user-buttons">
+                    <button onclick="showCustomerAuth()">Customer</button>
+                    <button onclick="showOwnerAuth()">Restaurant Owner</button>
+                </div>
+            </section>
+
+            <!-- Customer Login & Register -->
+            <section id="auth-section-customer" class="auth-section" style="display:none;">
+                <h2>Customer Login</h2>
+                <input type="text" id="login-username-customer" placeholder="Username" required>
+                <input type="password" id="login-password-customer" placeholder="Password" required>
+                <button onclick="login('customer')" class="auth-btn">Login</button>
+                <p class="separator">OR</p>
+                <input type="text" id="register-username-customer" placeholder="Username" required>
+                <input type="password" id="register-password-customer" placeholder="Password" required>
+                <button onclick="register('customer')" class="auth-btn">Register</button>
+            </section>
+
+            <!-- Owner Login & Register -->
+            <section id="auth-section-owner" class="auth-section" style="display:none;">
+                <h2>Restaurant Owner Login</h2>
+                <input type="text" id="login-username-owner" placeholder="Username" required>
+                <input type="password" id="login-password-owner" placeholder="Password" required>
+                <button onclick="login('owner')" class="auth-btn">Login</button>
+                <p class="separator">OR</p>
+                <input type="text" id="register-username-owner" placeholder="Username" required>
+                <input type="password" id="register-password-owner" placeholder="Password" required>
+                <button onclick="register('owner')" class="auth-btn">Register</button>
+            </section>
+        </div><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickBite Restaurant - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-page-container">
+        <div class="login-content">
             <h1>QuickBite Restaurant</h1>
 
             <!-- User Type Selection -->
@@ -44,41 +89,46 @@
                 <button onclick="register('owner')" class="auth-btn">Register</button>
             </section>
         </div>
+
+        <!-- Background Image -->
+        <div class="background-image">
+            <img src="https://images.pexels.com/photos/1437267/pexels-photo-1437267.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Delicious Food">
+        </div>
     </div>
 
-    <!-- Menu Section -->
-    <section id="menu" class="menu-section" style="display:none;">
-        <h2>Menu</h2>
-        <div class="menu-grid">
-            <!-- Example Menu Items -->
-            <div class="menu-item">
-                <img src="burger-image.jpg" alt="Burger">
-                <h3>Burger</h3>
-                <p>₹150</p>
-                <button>Add to Order</button>
-            </div>
-            <div class="menu-item">
-                <img src="pizza-image.jpg" alt="Pizza">
-                <h3>Pizza</h3>
-                <p>₹200</p>
-                <button>Add to Order</button>
-            </div>
-            <!-- Add more items -->
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+        <!-- Background Image -->
+        <div class="background-image">
+            <img src="https://images.pexels.com/photos/1437267/pexels-photo-1437267.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Delicious Food">
         </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+    <section id="menu" class="menu-section" style="display:none;">
+        <!-- Menu Section (unchanged) -->
+        <div id="menu-items"></div>
     </section>
 
-    <!-- Order Section -->
-    <section id="order-section" class="order-section" style="display:none;">
-        <h2>Your Order</h2>
-        <ul class="order-list">
-            <!-- Example Orders -->
-            <li>Burger - ₹150</li>
-            <li>Pizza - ₹200</li>
-        </ul>
-        <p class="total-price">Total: ₹350</p>
-        <button id="submit-order-btn">Submit Order</button>
+    <section id="order" class="order-section" style="display:none;">
+        <!-- Order Section (unchanged) -->
+        <ul id="order-list"></ul>
+        <p>Total Price: ₹<span id="total-price">0</span></p>
+        <button id="submit-order-btn" onclick="submitOrder()">Submit Order</button>
     </section>
 
-    <script src="script.js"></script>
+    <section id="orders-section" style="display:none;">
+        <h2>Current Orders</h2>
+        <div id="orders-list"></div>
+    </section>
+
+    <script src="app.js"></script>
 </body>
 </html>
