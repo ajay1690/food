@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(cors()); // Enable CORS
 
 // Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'food-ordering-app')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // MongoDB connection string
@@ -82,7 +82,7 @@ app.post('/submit-order', async (req, res) => {
 
 // Catch-all route to serve the frontend (index.html)
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'food-ordering-app', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Start the server
