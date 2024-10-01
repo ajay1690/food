@@ -9,6 +9,7 @@ const menuItems = [
 
 let order = [];
 const baseURL = "https://food-ordering-app-6xq4.onrender.com"; // Example: https://food-ordering-app-6xq4.onrender.com
+
 // Function to display the menu
 function displayMenu() {
     const menuContainer = document.getElementById('menu-items');
@@ -60,7 +61,7 @@ async function submitOrder() {
     const totalPrice = order.reduce((total, item) => total + item.price, 0);
 
     try {
-        const response = await fetch('https://food-ordering-app-6xq4.onrender.com/submit-order', {
+        const response = await fetch(`${baseURL}/submit-order`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, items: order, total: totalPrice })
@@ -80,20 +81,18 @@ async function submitOrder() {
     }
 }
 
-
-
-
 // Registration function (updated to send data to the backend)
 async function register() {
     const username = document.getElementById('register-username').value;
     const password = document.getElementById('register-password').value;
+    const role = document.querySelector('input[name="role"]:checked').value; // Get role from the radio buttons
 
     if (username && password) {
         try {
-            const response = await fetch('https://food-ordering-app-6xq4.onrender.com/register', {
+            const response = await fetch(`${baseURL}/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify({ username, password, role }) // Send role in the body
             });
             const data = await response.json();
             alert(data.message);
@@ -112,14 +111,18 @@ async function login() {
 
     if (username && password) {
         try {
-            const response = await fetch('https://food-ordering-app-6xq4.onrender.com/login', {
+            const response = await fetch(`${baseURL}/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
             });
             const data = await response.json();
             if (data.message === 'Login successful') {
-                showMenu();
+                if (data.role === 'owner') {
+                    showOrders(); // Show orders if the user is an owner
+                } else {
+                    showMenu(); // Show menu for customers
+                }
             } else {
                 alert('Invalid username or password.');
             }
@@ -137,4 +140,27 @@ function showMenu() {
     document.getElementById('menu').style.display = 'block';
     document.getElementById('order').style.display = 'block';
     displayMenu();
+}
+
+// Function to show orders for restaurant owners
+async function showOrders() {
+    document.getElementById('auth-section').style.display = 'none';
+    document.getElementById('menu').style.display = 'none';
+    document.getElementById('order').style.display = 'none';
+    document.getElementById('orders-section').style.display = 'block'; // Show orders section
+
+    try {
+        const response = await fetch(`${baseURL}/orders`);
+        const orders = await response.json();
+        const ordersContainer = document.getElementById('orders-list');
+        ordersContainer.innerHTML = ''; // Clear previous orders
+
+        orders.forEach(order => {
+            const orderItem = document.createElement('div');
+            orderItem.innerHTML = `<p>${order.username}: ₹${order.total}</p>`;
+            ordersContainer.appendChild(orderItem);
+        });
+    } catch (error) {
+        alert('Error fetching orders');
+    }
 }
