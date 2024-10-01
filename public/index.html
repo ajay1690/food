@@ -26,6 +26,10 @@
                 <h3>Register</h3>
                 <input type="text" id="register-username" placeholder="Username" required>
                 <input type="password" id="register-password" placeholder="Password" required>
+                <div>
+                    <input type="radio" name="role" value="customer" checked> Customer
+                    <input type="radio" name="role" value="owner"> Restaurant Owner
+                </div>
                 <button onclick="register()">Register</button>
             </div>
         </div>
@@ -44,10 +48,14 @@
         <ul id="order-list" class="order-list"></ul>
         <p class="total-price">Total: ₹<span id="total-price">0</span></p>
         <button id="submit-order-btn" onclick="submitOrder()">Submit Order</button>
+    </section>
 
+    <!-- Orders Section for Restaurant Owners -->
+    <section id="orders-section" style="display:none;">
+        <h2>Customer Orders</h2>
+        <div id="orders-list"></div>
     </section>
 
     <script src="app.js"></script>
 </body>
 </html>
-
