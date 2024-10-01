@@ -21,7 +21,7 @@ function displayMenu() {
             <img src="${item.image}" alt="${item.name}">
             <h3>${item.name}</h3>
             <p>₹${item.price}</p>
-            <button onclick="addToOrder(${item.id})">Add to Order</button>
+            <button class="add-button" onclick="addToOrder(${item.id})">Add to Order</button>
         `;
         menuContainer.appendChild(menuItem);
     });
@@ -47,7 +47,7 @@ function updateOrder() {
     });
 
     const totalPrice = order.reduce((total, item) => total + item.price, 0);
-    totalPriceElement.textContent = totalPrice;
+    totalPriceElement.textContent = `Total: ₹${totalPrice}`;
 }
 
 // Submit order function (sends data to the backend)
@@ -159,7 +159,8 @@ async function showOrders() {
 
         orders.forEach(order => {
             const orderItem = document.createElement('div');
-            orderItem.innerHTML = `<p>${order.username}: ₹${order.total}</p>`;
+            orderItem.classList.add('order-box'); // Style each order box
+            orderItem.innerHTML = `<p><strong>${order.username}</strong>: ₹${order.total}</p>`;
             ordersContainer.appendChild(orderItem);
         });
     } catch (error) {
