@@ -8,9 +8,9 @@ const menuItems = [
 ];
 
 let order = [];
-const baseURL = "https://food-ordering-app-6xq4.onrender.com";
+const baseURL = "https://food-ordering-app-6xq4.onrender.com"; // Your backend URL
 
-// Function to display the menu
+// Function to display the menu for customers
 function displayMenu() {
     const menuContainer = document.getElementById('menu-items');
     menuContainer.innerHTML = ''; // Clear previous items
@@ -50,9 +50,9 @@ function updateOrder() {
     totalPriceElement.textContent = totalPrice;
 }
 
-// Submit order function (updated to send data to the backend)
+// Submit order function (sends data to the backend)
 async function submitOrder() {
-    const username = document.getElementById('login-username').value; // Assuming user is logged in
+    const username = localStorage.getItem('username'); // Fetch logged-in username from local storage
     if (order.length === 0) {
         alert('Your order is empty!');
         return;
@@ -72,7 +72,7 @@ async function submitOrder() {
         if (response.ok) {
             alert(data.message);
             order = []; // Clear the order after successful submission
-            updateOrder(); // Assuming this function updates the UI
+            updateOrder(); // Update the UI
         } else {
             alert('Error: ' + data.message);
         }
@@ -82,10 +82,9 @@ async function submitOrder() {
 }
 
 // Registration function
-async function register() {
-    const username = document.getElementById('register-username').value;
-    const password = document.getElementById('register-password').value;
-    const role = document.querySelector('input[name="role"]:checked').value; // Get role from the radio buttons
+async function register(role) {
+    const username = document.getElementById(`register-username-${role}`).value;
+    const password = document.getElementById(`register-password-${role}`).value;
 
     if (username && password) {
         try {
@@ -104,10 +103,10 @@ async function register() {
     }
 }
 
-// Login function
-async function login() {
-    const username = document.getElementById('login-username').value;
-    const password = document.getElementById('login-password').value;
+// Login function for both customer and owner
+async function login(role) {
+    const username = document.getElementById(`login-username-${role}`).value;
+    const password = document.getElementById(`login-password-${role}`).value;
 
     if (username && password) {
         try {
@@ -117,7 +116,10 @@ async function login() {
                 body: JSON.stringify({ username, password })
             });
             const data = await response.json();
+
             if (data.message === 'Login successful') {
+                localStorage.setItem('username', username);
+                localStorage.setItem('role', data.role);
                 if (data.role === 'owner') {
                     showOrders(); // Show orders if the user is an owner
                 } else {
@@ -134,9 +136,9 @@ async function login() {
     }
 }
 
-// Function to show the menu and hide login form after successful login
+// Function to show the menu for customers
 function showMenu() {
-    document.getElementById('auth-section').style.display = 'none';
+    document.getElementById('auth-section-customer').style.display = 'none';
     document.getElementById('menu').style.display = 'block';
     document.getElementById('order').style.display = 'block';
     displayMenu();
@@ -144,7 +146,7 @@ function showMenu() {
 
 // Function to show orders for restaurant owners
 async function showOrders() {
-    document.getElementById('auth-section').style.display = 'none';
+    document.getElementById('auth-section-owner').style.display = 'none';
     document.getElementById('menu').style.display = 'none';
     document.getElementById('order').style.display = 'none';
     document.getElementById('orders-section').style.display = 'block'; // Show orders section
@@ -163,4 +165,15 @@ async function showOrders() {
     } catch (error) {
         alert('Error fetching orders');
     }
+}
+
+// Functions to show/hide login/register forms
+function showCustomerAuth() {
+    document.getElementById('user-selection').style.display = 'none';
+    document.getElementById('auth-section-customer').style.display = 'block';
+}
+
+function showOwnerAuth() {
+    document.getElementById('user-selection').style.display = 'none';
+    document.getElementById('auth-section-owner').style.display = 'block';
 }
