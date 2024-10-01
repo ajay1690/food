@@ -8,7 +8,7 @@ const menuItems = [
 ];
 
 let order = [];
-const baseURL = "https://food-ordering-app-6xq4.onrender.com"; // Example: https://food-ordering-app-6xq4.onrender.com
+const baseURL = "https://food-ordering-app-6xq4.onrender.com";
 
 // Function to display the menu
 function displayMenu() {
@@ -81,7 +81,7 @@ async function submitOrder() {
     }
 }
 
-// Registration function (updated to send data to the backend)
+// Registration function
 async function register() {
     const username = document.getElementById('register-username').value;
     const password = document.getElementById('register-password').value;
@@ -104,7 +104,7 @@ async function register() {
     }
 }
 
-// Login function (updated to send data to the backend)
+// Login function
 async function login() {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;

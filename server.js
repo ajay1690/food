@@ -4,15 +4,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-// Create Express app
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-
-// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// MongoDB connection string
 const dbURI = process.env.MONGODB_URI || 'mongodb+srv://bansodajay516:Ajay1234@food.bkb9h.mongodb.net/?retryWrites=true&w=majority&appName=food';
 
 // Connect to MongoDB
@@ -24,7 +20,7 @@ mongoose.connect(dbURI)
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    role: { type: String, required: true } // Added role field
+    role: { type: String, required: true }
 });
 
 // Order Schema
@@ -56,9 +52,9 @@ app.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ username, password });
         if (user) {
-            res.status(200).json({ message: 'Login successful', role: user.role }); // Return user role
+            res.status(200).json({ message: 'Login successful', role: user.role });
         } else {
-            res.status(401).json({ message: 'Invalid username or password' });
+            res.status(401).json({ message: 'Invalid credentials' });
         }
     } catch (error) {
         res.status(400).json({ message: 'Error logging in', error });
@@ -87,13 +83,6 @@ app.get('/orders', async (req, res) => {
     }
 });
 
-// Catch-all route to serve the frontend (index.html)
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// Server listening on port 3000
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

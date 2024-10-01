@@ -95,6 +95,7 @@ header {
     width: 200px;
     text-align: center;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add hover transitions */
 }
 
 .menu-item img {
@@ -114,10 +115,18 @@ header {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
 .menu-item button:hover {
     background-color: #e55342;
+    transform: translateY(-5px); /* Raise the button slightly on hover */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+}
+
+.menu-item:hover {
+    transform: scale(1.05); /* Slightly zoom on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Increase shadow */
 }
 
 /* Order Section */
@@ -145,6 +154,32 @@ header {
     padding-bottom: 5px;
 }
 
+/* Orders Section for Restaurant Owners */
+#orders-section {
+    padding: 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+#orders-section h2 {
+    color: #ff6347;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+#orders-list {
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: left;
+}
+
+#orders-list p {
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+/* Total Price */
 .total-price {
     font-size: 24px;
     font-weight: bold;
@@ -170,4 +205,3 @@ header {
     transform: translateY(-3px); /* Slightly raise button on hover */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
 }
-
