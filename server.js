@@ -2,11 +2,16 @@ const express = require('express');
 const cors = require('cors'); // Import cors
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 // Create Express app
 const app = express();
 app.use(bodyParser.json());
 app.use(cors()); // Enable CORS
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // MongoDB connection string
 const dbURI = process.env.MONGODB_URI || 'mongodb+srv://bansodajay516:Ajay1234@food.bkb9h.mongodb.net/?retryWrites=true&w=majority&appName=food'; // Replace with your actual MongoDB URI
@@ -73,6 +78,11 @@ app.post('/submit-order', async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: 'Error submitting order', error });
     }
+});
+
+// Catch-all route to serve the frontend (index.html)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Start the server
