@@ -21,44 +21,45 @@
     </section>
 
     <!-- Login & Register Section for Customers -->
-    <section id="auth-section-customer" class="auth-background" style="display:none;">
-        <div class="auth-container">
-            <h2>Customer Login or Register</h2>
-            <div id="login-form-customer" class="auth-form">
-                <h3>Customer Login</h3>
-                <input type="text" id="login-username-customer" placeholder="Username" required>
-                <input type="password" id="login-password-customer" placeholder="Password" required>
-                <button onclick="login('customer')">Login</button>
-            </div>
-
-            <div id="register-form-customer" class="auth-form">
-                <h3>Customer Register</h3>
-                <input type="text" id="register-username-customer" placeholder="Username" required>
-                <input type="password" id="register-password-customer" placeholder="Password" required>
-                <button onclick="register('customer')">Register</button>
-            </div>
+<section id="auth-section-customer" class="auth-background" style="display:none;">
+    <div class="auth-container">
+        <h2>Customer Login or Register</h2>
+        <div id="login-form-customer" class="auth-form">
+            <h3>Customer Login</h3>
+            <input type="text" id="login-username-customer" placeholder="Username" required>
+            <input type="password" id="login-password-customer" placeholder="Password" required>
+            <button onclick="login('customer')">Login</button>
         </div>
-    </section>
 
-    <!-- Login & Register Section for Restaurant Owners -->
-    <section id="auth-section-owner" class="auth-background" style="display:none;">
-        <div class="auth-container">
-            <h2>Owner Login or Register</h2>
-            <div id="login-form-owner" class="auth-form">
-                <h3>Owner Login</h3>
-                <input type="text" id="login-username-owner" placeholder="Username" required>
-                <input type="password" id="login-password-owner" placeholder="Password" required>
-                <button onclick="login('owner')">Login</button>
-            </div>
-
-            <div id="register-form-owner" class="auth-form">
-                <h3>Owner Register</h3>
-                <input type="text" id="register-username-owner" placeholder="Username" required>
-                <input type="password" id="register-password-owner" placeholder="Password" required>
-                <button onclick="register('owner')">Register</button>
-            </div>
+        <div id="register-form-customer" class="auth-form">
+            <h3>Customer Register</h3>
+            <input type="text" id="register-username-customer" placeholder="Username" required>
+            <input type="password" id="register-password-customer" placeholder="Password" required>
+            <button onclick="register('customer')">Register</button>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Login & Register Section for Restaurant Owners -->
+<section id="auth-section-owner" class="auth-background" style="display:none;">
+    <div class="auth-container">
+        <h2>Owner Login or Register</h2>
+        <div id="login-form-owner" class="auth-form">
+            <h3>Owner Login</h3>
+            <input type="text" id="login-username-owner" placeholder="Username" required>
+            <input type="password" id="login-password-owner" placeholder="Password" required>
+            <button onclick="login('owner')">Login</button>
+        </div>
+
+        <div id="register-form-owner" class="auth-form">
+            <h3>Owner Register</h3>
+            <input type="text" id="register-username-owner" placeholder="Username" required>
+            <input type="password" id="register-password-owner" placeholder="Password" required>
+            <button onclick="register('owner')">Register</button>
+        </div>
+    </div>
+</section>
+
 
     <section id="menu" class="menu-section" style="display:none;">
         <!-- Menu Section (unchanged) -->

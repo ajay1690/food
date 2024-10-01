@@ -117,6 +117,12 @@ async function login(role) {
             });
             const data = await response.json();
 
+            // Role validation
+            if (data.role !== role) {
+                alert(`You are registered as a ${data.role.charAt(0).toUpperCase() + data.role.slice(1)}, please log in to the correct section.`);
+                return;
+            }
+
             if (data.message === 'Login successful') {
                 localStorage.setItem('username', username);
                 localStorage.setItem('role', data.role);
