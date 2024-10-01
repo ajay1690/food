@@ -8,7 +8,7 @@ const menuItems = [
 ];
 
 let order = [];
-
+const baseURL = "https://food-ordering-app-6xq4.onrender.com"; // Example: https://food-ordering-app-6xq4.onrender.com
 // Function to display the menu
 function displayMenu() {
     const menuContainer = document.getElementById('menu-items');
@@ -60,7 +60,7 @@ async function submitOrder() {
     const totalPrice = order.reduce((total, item) => total + item.price, 0);
 
     try {
-        const response = await fetch('http://localhost:5000/submit-order', {
+        const response = await fetch('https://food-ordering-app-6xq4.onrender.com/submit-order', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, items: order, total: totalPrice })
@@ -90,7 +90,7 @@ async function register() {
 
     if (username && password) {
         try {
-            const response = await fetch('http://localhost:5000/register', {
+            const response = await fetch('https://food-ordering-app-6xq4.onrender.com/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
@@ -112,7 +112,7 @@ async function login() {
 
     if (username && password) {
         try {
-            const response = await fetch('http://localhost:5000/login', {
+            const response = await fetch('https://food-ordering-app-6xq4.onrender.com/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
