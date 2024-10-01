@@ -103,7 +103,7 @@ async function register(role) {
     }
 }
 
-// Login function for both customer and owner
+// Login function for both customer and owner with role validation
 async function login(role) {
     const username = document.getElementById(`login-username-${role}`).value;
     const password = document.getElementById(`login-password-${role}`).value;
@@ -117,15 +117,15 @@ async function login(role) {
             });
             const data = await response.json();
 
-            // Role validation
-            if (data.role !== role) {
-                alert(`You are registered as a ${data.role.charAt(0).toUpperCase() + data.role.slice(1)}, please log in to the correct section.`);
-                return;
-            }
-
             if (data.message === 'Login successful') {
+                if (data.role !== role) {
+                    alert(`Access Denied: You are registered as a ${data.role}, not a ${role}.`);
+                    return;
+                }
+
                 localStorage.setItem('username', username);
                 localStorage.setItem('role', data.role);
+
                 if (data.role === 'owner') {
                     showOrders(); // Show orders if the user is an owner
                 } else {
