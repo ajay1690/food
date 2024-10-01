@@ -1,194 +1,174 @@
+/* Reset Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f7f7f7;
+    background: linear-gradient(to bottom right, #ff9966, #ff5e62);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
-.login-page-container {
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
-    max-width: 1000px;
-}
-
-.login-content {
-    width: 45%;
-    padding: 40px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* Centered Container for Login/Registration */
+.auth-container {
+    background-color: #fff;
+    padding: 40px 60px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Titles */
+h1, h2 {
+    color: #ff6347;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
 }
 
 h1 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
 }
 
 h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: #555;
-}
-.auth-background {
-    background: linear-gradient(to right, #ff6347, #ff9966);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.auth-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 400px;
-    width: 100%;
+    font-size: 1.8rem;
 }
 
-.auth-container h2 {
-    color: #ff6347;
-    margin-bottom: 20px;
-}
-.user-selection-section, .auth-section {
-    margin-bottom: 20px;
-}
-
-.user-buttons button {
+/* Input Styles */
+input {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #ff5733;
-    color: white;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.auth-section input {
-    width: 100%;
-    padding: 12px;
+    padding: 15px;
     margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 1rem;
 }
 
-.auth-btn {
+/* Button Styles */
+button {
     width: 100%;
-    padding: 12px;
-    background-color: #28a745;
+    padding: 15px;
+    background-color: #ff6347;
     color: white;
     border: none;
     border-radius: 5px;
+    font-size: 1.2rem;
     cursor: pointer;
     margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.separator {
-    margin: 15px 0;
-    font-size: 0.9rem;
-    color: #888;
+button:hover {
+    background-color: #ff471a;
+    transform: scale(1.05);
+}
+
+.auth-btn {
+    background-color: #28a745;
 }
 
 .auth-btn:hover {
     background-color: #218838;
 }
 
-.user-buttons button:hover {
-    background-color: #ff471a;
+/* Separator */
+.separator {
+    margin: 15px 0;
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
 }
 
-.background-image img {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    border-radius: 8px;
-}
-/* Menu Section */
+/* Horizontal Menu Layout */
 .menu-section {
-    padding: 20px;
-    background-image: url('https://images.pexels.com/photos/616353/pexels-photo-616353.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    padding: 40px 0;
+    background: url('https://images.pexels.com/photos/616353/pexels-photo-616353.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') no-repeat center;
     background-size: cover;
     color: white;
+    text-align: center;
 }
 
 .menu-section h2 {
-    text-align: center;
-    color: #ff6347;
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 40px;
 }
 
-.menu-grid {
+.menu-items {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
 }
 
 .menu-item {
     background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
-    margin: 15px;
-    padding: 15px;
-    width: 200px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 240px;
     text-align: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add hover transitions */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .menu-item img {
     width: 100%;
     border-radius: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .menu-item h3 {
+    font-size: 1.5rem;
     color: #ff6347;
+    margin-bottom: 10px;
+}
+
+.menu-item p {
+    color: #555;
+    margin-bottom: 15px;
 }
 
 .menu-item button {
+    padding: 12px;
+    font-size: 1rem;
     background-color: #ff6347;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
 .menu-item button:hover {
-    background-color: #e55342;
-    transform: translateY(-5px); /* Raise the button slightly on hover */
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+    background-color: #ff471a;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .menu-item:hover {
-    transform: scale(1.05); /* Slightly zoom on hover */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Increase shadow */
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Order Section */
 .order-section {
-    background-color: #fff;
-    padding: 20px;
+    background-color: white;
+    padding: 30px;
     text-align: center;
 }
 
 .order-section h2 {
+    font-size: 2rem;
     color: #ff6347;
-    font-size: 28px;
 }
 
 .order-list {
@@ -198,88 +178,27 @@ h2 {
 }
 
 .order-list li {
+    font-size: 18px;
     margin: 10px 0;
-    font-size: 18px;
-    border-bottom: 1px solid #ccc;
     padding-bottom: 5px;
-}
-
-/* Orders Section for Restaurant Owners */
-#orders-section {
-    padding: 20px;
-    background-color: #ffffff;
-    text-align: center;
-}
-
-#orders-section h2 {
-    color: #ff6347;
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-#orders-list {
-    margin: 20px auto;
-    max-width: 600px;
-    text-align: left;
-}
-
-#orders-list p {
-    font-size: 18px;
     border-bottom: 1px solid #ccc;
-    padding: 10px 0;
 }
 
-/* Total Price */
-.total-price {
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-/* Submit Order Button Styles */
+/* Submit Order Button */
 #submit-order-btn {
-    background-color: #28a745; /* Green background */
-    color: white; /* White text */
-    padding: 15px 30px; /* Bigger padding for a larger button */
-    font-size: 18px; /* Larger font size */
-    border: none; /* Remove border */
-    border-radius: 8px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
-}
-
-/* Hover Effect */
-#submit-order-btn:hover {
-    background-color: #218838; /* Darker green on hover */
-    transform: translateY(-3px); /* Slightly raise button on hover */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
-}
-
-/* Orders Section for Restaurant Owners - Enhanced */
-.order-box {
-    background-color: #f0f8ff;
-    border: 1px solid #b0c4de;
+    background-color: #28a745;
+    color: white;
     padding: 15px;
-    margin: 10px;
-    border-radius: 10px;
-    transition: background-color 0.3s;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.order-box:hover {
-    background-color: #b0e0e6;
+#submit-order-btn:hover {
+    background-color: #218838;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
-
-/* Additional styles for user names in different colored boxes */
-#orders-list .username {
-    color: #fff; /* White text */
-    padding: 5px;
-    border-radius: 5px;
-}
-
-/* Specific styles for each user's order box */
-#orders-list .owner1 { background-color: #3498db; } /* Blue */
-#orders-list .owner2 { background-color: #e74c3c; } /* Red */
-#orders-list .owner3 { background-color: #f39c12; } /* Orange */
-#orders-list .owner4 { background-color: #2ecc71; } /* Green */
-#orders-list .owner5 { background-color: #9b59b6; } /* Purple */
