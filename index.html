@@ -9,10 +9,14 @@
 </head>
 
 <body>
+    <!-- Restaurant Name at the Top -->
+    <header>
+        <h1 id="restaurant-name">QuickBite Restaurant</h1>
+    </header>
+
+    <!-- Authentication Section -->
     <div class="auth-background">
         <div class="auth-container">
-            <h1>QuickBite Restaurant</h1>
-
             <!-- User Type Selection -->
             <section id="user-selection" class="user-selection-section">
                 <h2>Select User Type</h2>
@@ -59,13 +63,15 @@
         <h2>Your Order</h2>
         <ul id="order-list" class="order-list"></ul>
         <p>Total Price: ₹<span id="total-price">0</span></p>
+        <!-- Submit Order Button moved to the bottom -->
         <button id="submit-order-btn" onclick="submitOrder()">Submit Order</button>
     </section>
 
     <!-- Current Orders for Restaurant Owners -->
     <section id="orders-section" style="display:none;">
         <h2>Current Orders</h2>
-        <div id="orders-list"></div>
+        <!-- Orders will be displayed horizontally here -->
+        <div id="orders-list" class="horizontal-orders"></div>
     </section>
 
     <script src="app.js"></script>

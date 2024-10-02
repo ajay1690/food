@@ -13,6 +13,16 @@ body {
     height: 100vh;
 }
 
+header {
+    text-align: center;
+    background-color: #ff6347;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
 h1 {
     font-size: 2.5rem;
     color: #333;
@@ -31,6 +41,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 80px; /* Added to push the content below the header */
 }
 
 .auth-container {
@@ -106,13 +117,6 @@ h2 {
     margin: 15px 0;
     font-size: 1rem;
     color: #888;
-}
-
-.background-image img {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    border-radius: 8px;
 }
 
 /* Menu Section */
@@ -240,41 +244,38 @@ h2 {
     margin-bottom: 20px;
 }
 
+/* Horizontal layout for orders */
 #orders-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin: 20px auto;
-    max-width: 600px;
-    text-align: left;
+    max-width: 1000px;
 }
 
-#orders-list p {
-    font-size: 18px;
-    border-bottom: 1px solid #ccc;
-    padding: 10px 0;
-}
-
-/* Additional styling for restaurant owners' order boxes */
-.order-box {
+#orders-list .order-box {
     background-color: #f0f8ff;
     border: 1px solid #b0c4de;
     padding: 15px;
     margin: 10px;
     border-radius: 10px;
-    transition: background-color 0.3s;
+    width: 200px;
+    transition: background-color 0.3s ease;
 }
 
-.order-box:hover {
+#orders-list .order-box:hover {
     background-color: #b0e0e6;
 }
 
-/* User colors in order section */
-#orders-list .username {
+/* Owner color coding */
+.username {
     color: #fff;
     padding: 5px;
     border-radius: 5px;
 }
 
-#orders-list .owner1 { background-color: #3498db; } /* Blue */
-#orders-list .owner2 { background-color: #e74c3c; } /* Red */
-#orders-list .owner3 { background-color: #f39c12; } /* Orange */
-#orders-list .owner4 { background-color: #2ecc71; } /* Green */
-#orders-list .owner5 { background-color: #9b59b6; } /* Purple */
+.owner1 { background-color: #3498db; } /* Blue */
+.owner2 { background-color: #e74c3c; } /* Red */
+.owner3 { background-color: #f39c12; } /* Orange */
+.owner4 { background-color: #2ecc71; } /* Green */
+.owner5 { background-color: #9b59b6; } /* Purple */
