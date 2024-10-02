@@ -81,7 +81,7 @@ async function submitOrder() {
     }
 }
 
-// Registration function
+// Registration function (Added role-based message update)
 async function register(role) {
     const username = document.getElementById(`register-username-${role}`).value;
     const password = document.getElementById(`register-password-${role}`).value;
@@ -94,7 +94,14 @@ async function register(role) {
                 body: JSON.stringify({ username, password, role }) // Send role in the body
             });
             const data = await response.json();
-            alert(data.message);
+
+            // Display message based on role
+            if (data.message === 'User registered successfully') {
+                alert(`Welcome, ${role === 'owner' ? 'Owner' : 'Customer'}!`);
+            } else {
+                alert(data.message);
+            }
+
         } catch (error) {
             alert('Error registering user');
         }
@@ -150,7 +157,7 @@ function showMenu() {
     displayMenu();
 }
 
-// Function to show orders for restaurant owners
+// Function to show orders for restaurant owners (added username in display)
 async function showOrders() {
     document.getElementById('auth-section-owner').style.display = 'none';
     document.getElementById('menu').style.display = 'none';
@@ -166,6 +173,7 @@ async function showOrders() {
         orders.forEach(order => {
             const orderItem = document.createElement('div');
             orderItem.classList.add('order-box'); // Style each order box
+            // Added username to each order for better clarity
             orderItem.innerHTML = `<p><strong>${order.username}</strong>: ₹${order.total}</p>`;
             ordersContainer.appendChild(orderItem);
         });
