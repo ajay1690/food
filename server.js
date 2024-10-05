@@ -28,6 +28,8 @@ const orderSchema = new mongoose.Schema({
     username: { type: String, required: true },
     items: [{ name: String, price: Number }],
     total: Number,
+    status: { type: String, default: 'pending' }, // pending, accepted, prepared
+    estimatedTime: Number, // Time in minutes
     orderDate: { type: Date, default: Date.now }
 });
 
@@ -61,25 +63,75 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Submit order route
+// Submit order route (customer places order)
 app.post('/submit-order', async (req, res) => {
     const { username, items, total } = req.body;
     try {
-        const order = new Order({ username, items, total });
+        const order = new Order({ username, items, total, status: 'pending' });
         await order.save();
-        res.status(201).json({ message: 'Order submitted successfully' });
+        res.status(201).json({ message: 'Order submitted! Waiting for owner confirmation.' });
     } catch (error) {
         res.status(400).json({ message: 'Error submitting order', error });
     }
 });
 
-// Orders route for restaurant owners
+// Owner accepts the order and provides estimated preparation time
+app.post('/accept-order', async (req, res) => {
+    const { username, estimatedTime } = req.body;
+    try {
+        const order = await Order.findOne({ username, status: 'pending' });
+        if (order) {
+            order.status = 'accepted';
+            order.estimatedTime = estimatedTime;
+            await order.save();
+            res.status(200).json({ message: 'Order accepted!', order });
+        } else {
+            res.status(400).json({ message: 'Order not found or already accepted' });
+        }
+    } catch (error) {
+        res.status(400).json({ message: 'Error accepting order', error });
+    }
+});
+
+// Mark order as prepared by the owner
+app.post('/order-prepared', async (req, res) => {
+    const { username } = req.body;
+    try {
+        const order = await Order.findOne({ username, status: 'accepted' });
+        if (order) {
+            order.status = 'prepared';
+            await order.save();
+            res.status(200).json({ message: 'Order marked as prepared!' });
+        } else {
+            res.status(400).json({ message: 'Order not found or already prepared' });
+        }
+    } catch (error) {
+        res.status(400).json({ message: 'Error marking order as prepared', error });
+    }
+});
+
+// Get pending and accepted orders for restaurant owner
 app.get('/orders', async (req, res) => {
     try {
-        const orders = await Order.find();
+        const orders = await Order.find({ status: { $in: ['pending', 'accepted'] } });
         res.status(200).json(orders);
     } catch (error) {
         res.status(400).json({ message: 'Error fetching orders', error });
+    }
+});
+
+// Get order status for the customer
+app.get('/order-status/:username', async (req, res) => {
+    const { username } = req.params;
+    try {
+        const order = await Order.findOne({ username });
+        if (order) {
+            res.status(200).json(order);
+        } else {
+            res.status(404).json({ message: 'Order not found' });
+        }
+    } catch (error) {
+        res.status(400).json({ message: 'Error fetching order status', error });
     }
 });
 
