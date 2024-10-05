@@ -1,48 +1,37 @@
+// Sample menu items with images
+const menuItems = [
+    { id: 1, name: 'Pizza', price: 300, image: 'https://images.pexels.com/photos/1435907/pexels-photo-1435907.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' },
+    { id: 2, name: 'Burger', price: 150, image: 'https://images.pexels.com/photos/156114/pexels-photo-156114.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' },
+    { id: 3, name: 'Pasta', price: 200, image: 'https://images.pexels.com/photos/1437267/pexels-photo-1437267.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' },
+    { id: 4, name: 'Salad', price: 100, image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' },
+    { id: 5, name: 'Soup', price: 80, image: 'https://images.pexels.com/photos/6287762/pexels-photo-6287762.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' }
+];
+
 let order = [];
 const baseURL = "https://food-ordering-app-6xq4.onrender.com"; // Your backend URL
 
-// Function to display the menu for customers (now uses restaurant-specific menus)
-async function displayMenu() {
+// Function to display the menu for customers
+function displayMenu() {
     const menuContainer = document.getElementById('menu-items');
     menuContainer.innerHTML = ''; // Clear previous items
-
-    try {
-        const response = await fetch(`${baseURL}/restaurants`); // Fetch restaurants with their menus
-        const restaurants = await response.json();
-
-        // Loop through each restaurant to display its menu
-        restaurants.forEach(restaurant => {
-            const restaurantMenu = document.createElement('div');
-            restaurantMenu.classList.add('restaurant-menu');
-            restaurantMenu.innerHTML = `<h2>${restaurant.name}</h2>`;
-            
-            restaurant.menu.forEach(item => {
-                const menuItem = document.createElement('div');
-                menuItem.classList.add('menu-item');
-                menuItem.innerHTML = `
-                    <img src="${item.image || 'default_image_url'}" alt="${item.name}">
-                    <h3>${item.name}</h3>
-                    <p>₹${item.price}</p>
-                    <button class="add-button" onclick="addToOrder(${item.id})">Add to Order</button>
-                `;
-                restaurantMenu.appendChild(menuItem);
-            });
-            menuContainer.appendChild(restaurantMenu);
-        });
-    } catch (error) {
-        alert('Error fetching menu: ' + error.message);
-    }
+    menuItems.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.classList.add('menu-item');
+        menuItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <h3>${item.name}</h3>
+            <p>₹${item.price}</p>
+            <button class="add-button" onclick="addToOrder(${item.id})">Add to Order</button>
+        `;
+        menuContainer.appendChild(menuItem);
+    });
 }
 
 // Function to add an item to the order
 function addToOrder(itemId) {
-    fetch(`${baseURL}/menu-item/${itemId}`)
-        .then(response => response.json())
-        .then(item => {
-            order.push(item);
-            updateOrder();
-        })
-        .catch(error => alert('Error adding item to order: ' + error.message));
+    const item = menuItems.find(menuItem => menuItem.id === itemId);
+    order.push(item);
+    updateOrder();
 }
 
 // Function to update the order list and total price
@@ -92,71 +81,36 @@ async function submitOrder() {
     }
 }
 
-// Registration function for restaurant owners with additional restaurant details
+// Registration function (Added role-based message update)
 async function register(role) {
     const username = document.getElementById(`register-username-${role}`).value;
     const password = document.getElementById(`register-password-${role}`).value;
 
-    if (role === 'owner') {
-        const restaurantName = document.getElementById('restaurant-name').value;
-        const menuItems = [];
-
-        // Loop through the menu inputs (dynamic form fields)
-        const menuItemElements = document.querySelectorAll('.menu-item-input');
-        menuItemElements.forEach((itemElement) => {
-            const name = itemElement.querySelector('.menu-item-name').value;
-            const price = itemElement.querySelector('.menu-item-price').value;
-            const image = itemElement.querySelector('.menu-item-image').value;
-
-            if (name && price) {
-                menuItems.push({ name, price, image });
-            }
-        });
-
-        if (!restaurantName || menuItems.length === 0) {
-            alert('Please enter all restaurant details.');
-            return;
-        }
-
-        // Register the owner and their restaurant details
+    if (username && password) {
         try {
             const response = await fetch(`${baseURL}/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password, role, restaurantName, menu: menuItems })
+                body: JSON.stringify({ username, password, role }) // Send role in the body
             });
             const data = await response.json();
 
-            if (response.ok) {
+            // Display message based on role
+            if (data.message === 'User registered successfully') {
                 alert(`Welcome, ${role === 'owner' ? 'Owner' : 'Customer'}!`);
             } else {
                 alert(data.message);
             }
+
         } catch (error) {
-            alert('Error registering user: ' + error.message);
+            alert('Error registering user');
         }
     } else {
-        // Customer registration logic remains the same
-        try {
-            const response = await fetch(`${baseURL}/register`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password, role })
-            });
-            const data = await response.json();
-
-            if (response.ok) {
-                alert(`Welcome, ${role === 'owner' ? 'Owner' : 'Customer'}!`);
-            } else {
-                alert(data.message);
-            }
-        } catch (error) {
-            alert('Error registering user: ' + error.message);
-        }
+        alert('Please enter a username and password.');
     }
 }
 
-// Login function remains the same (showMenu and showOrders used based on role)
+// Login function for both customer and owner with role validation
 async function login(role) {
     const username = document.getElementById(`login-username-${role}`).value;
     const password = document.getElementById(`login-password-${role}`).value;
@@ -195,12 +149,40 @@ async function login(role) {
     }
 }
 
-// Show orders for restaurant owners remains the same
-async function showOrders() {
-    // Same functionality to display pending orders for the owner
+// Function to show the menu for customers
+function showMenu() {
+    document.getElementById('auth-section-customer').style.display = 'none';
+    document.getElementById('menu').style.display = 'block';
+    document.getElementById('order').style.display = 'block';
+    displayMenu();
 }
 
-// Function to toggle customer and owner registration forms
+// Function to show orders for restaurant owners (added username in display)
+async function showOrders() {
+    document.getElementById('auth-section-owner').style.display = 'none';
+    document.getElementById('menu').style.display = 'none';
+    document.getElementById('order').style.display = 'none';
+    document.getElementById('orders-section').style.display = 'block'; // Show orders section
+
+    try {
+        const response = await fetch(`${baseURL}/orders`);
+        const orders = await response.json();
+        const ordersContainer = document.getElementById('orders-list');
+        ordersContainer.innerHTML = ''; // Clear previous orders
+
+        orders.forEach(order => {
+            const orderItem = document.createElement('div');
+            orderItem.classList.add('order-box'); // Style each order box
+            // Added username to each order for better clarity
+            orderItem.innerHTML = `<p><strong>${order.username}</strong>: ₹${order.total}</p>`;
+            ordersContainer.appendChild(orderItem);
+        });
+    } catch (error) {
+        alert('Error fetching orders');
+    }
+}
+
+// Functions to show/hide login/register forms
 function showCustomerAuth() {
     document.getElementById('user-selection').style.display = 'none';
     document.getElementById('auth-section-customer').style.display = 'block';
