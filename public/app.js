@@ -11,22 +11,14 @@ let order = [];
 let selectedRestaurant = null;
 const baseURL = "https://food-ordering-app-6xq4.onrender.com"; // Your backend URL
 
-// Function to display the list of restaurants
 async function displayRestaurants() {
     try {
         const response = await fetch(`${baseURL}/restaurants`);
-        
-        // Check if the response is not HTML (unexpected response)
-        const contentType = response.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
-            throw new Error(`Invalid response from server: ${contentType}`);
-        }
-
+        // Check if the response is not ok
         if (!response.ok) {
-            const errorText = await response.text(); // Log the response in case of failure
-            throw new Error(`Error fetching restaurants: ${errorText}`);
+            const errorText = await response.text(); // Get error text for debugging
+            throw new Error(`Error fetching restaurants: ${response.status} - ${errorText}`);
         }
-
         const restaurants = await response.json();
         const restaurantContainer = document.getElementById('restaurant-list');
         restaurantContainer.innerHTML = ''; // Clear previous items
@@ -44,10 +36,10 @@ async function displayRestaurants() {
         });
 
     } catch (error) {
-        console.error('Error fetching restaurants:', error.message);
-        alert('Error fetching restaurants: ' + error.message);
+        alert(error.message); // Show the detailed error message
     }
 }
+
 
 // Function to select a restaurant and view its menu
 async function selectRestaurant(restaurantId) {
