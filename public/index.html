@@ -45,8 +45,13 @@
                 <input type="password" id="login-password-owner" placeholder="Password" required>
                 <button onclick="login('owner')" class="auth-btn">Login</button>
                 <p class="separator">OR</p>
+                <!-- Owner Registration with additional information -->
+                <h2>Restaurant Owner Registration</h2>
                 <input type="text" id="register-username-owner" placeholder="Username" required>
                 <input type="password" id="register-password-owner" placeholder="Password" required>
+                <input type="text" id="register-restaurant-name" placeholder="Restaurant Name" required>
+                <textarea id="register-menu-items" placeholder="Menu Items (comma separated)" required></textarea>
+                <textarea id="register-menu-prices" placeholder="Prices (comma separated)" required></textarea>
                 <button onclick="register('owner')" class="auth-btn">Register</button>
             </section>
         </div>
