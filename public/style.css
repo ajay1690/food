@@ -25,7 +25,7 @@ header {
 
 h1 {
     font-size: 2.5rem;
-    color: #fff;
+    color: #333;
     margin-bottom: 20px;
 }
 
@@ -117,60 +117,6 @@ h2 {
     margin: 15px 0;
     font-size: 1rem;
     color: #888;
-} 
-
-/* Restaurant Selection Section */
-.restaurant-selection-section {
-    text-align: center;
-    padding: 20px;
-}
-
-.restaurant-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.restaurant-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin: 15px;
-    padding: 20px;
-    width: 250px;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.restaurant-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.restaurant-card img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.restaurant-card h3 {
-    font-size: 1.2rem;
-    color: #ff6347;
-}
-
-.restaurant-card button {
-    background-color: #ff6347;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.restaurant-card button:hover {
-    background-color: #e55342;
 }
 
 /* Menu Section */
@@ -332,4 +278,4 @@ h2 {
 .owner2 { background-color: #e74c3c; } /* Red */
 .owner3 { background-color: #f39c12; } /* Orange */
 .owner4 { background-color: #2ecc71; } /* Green */
-.owner5 { background-color: #9b59b6; } /* Purple */ 
+.owner5 { background-color: #9b59b6; } /* Purple */

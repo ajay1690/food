@@ -52,15 +52,9 @@
         </div>
     </div>
 
-    <!-- Restaurant Selection Section for Customers -->
-    <section id="restaurant-selection" class="restaurant-selection-section" style="display:none;">
-        <h2>Select a Restaurant</h2>
-        <div id="restaurant-list" class="restaurant-list"></div>
-    </section>
-
     <!-- Menu Section -->
-    <section id="menu-section" class="menu-section" style="display:none;">
-        <h2>Menu</h2>
+    <section id="menu" class="menu-section" style="display:none;">
+        <h2>Our Menu</h2>
         <div id="menu-items" class="menu-grid"></div>
     </section>
 
@@ -69,12 +63,14 @@
         <h2>Your Order</h2>
         <ul id="order-list" class="order-list"></ul>
         <p>Total Price: ₹<span id="total-price">0</span></p>
+        <!-- Submit Order Button moved to the bottom -->
         <button id="submit-order-btn" onclick="submitOrder()">Submit Order</button>
     </section>
 
     <!-- Current Orders for Restaurant Owners -->
     <section id="orders-section" style="display:none;">
         <h2>Current Orders</h2>
+        <!-- Orders will be displayed horizontally here -->
         <div id="orders-list" class="horizontal-orders"></div>
     </section>
 
