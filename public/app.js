@@ -15,6 +15,18 @@ const baseURL = "https://food-ordering-app-6xq4.onrender.com"; // Your backend U
 async function displayRestaurants() {
     try {
         const response = await fetch(`${baseURL}/restaurants`);
+        
+        // Check if the response is not HTML (unexpected response)
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error(`Invalid response from server: ${contentType}`);
+        }
+
+        if (!response.ok) {
+            const errorText = await response.text(); // Log the response in case of failure
+            throw new Error(`Error fetching restaurants: ${errorText}`);
+        }
+
         const restaurants = await response.json();
         const restaurantContainer = document.getElementById('restaurant-list');
         restaurantContainer.innerHTML = ''; // Clear previous items
@@ -32,6 +44,7 @@ async function displayRestaurants() {
         });
 
     } catch (error) {
+        console.error('Error fetching restaurants:', error.message);
         alert('Error fetching restaurants: ' + error.message);
     }
 }
@@ -41,6 +54,18 @@ async function selectRestaurant(restaurantId) {
     selectedRestaurant = restaurantId;
     try {
         const response = await fetch(`${baseURL}/menu/${restaurantId}`);
+        
+        // Check if the response is not HTML (unexpected response)
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error(`Invalid response from server: ${contentType}`);
+        }
+
+        if (!response.ok) {
+            const errorText = await response.text(); // Log the response in case of failure
+            throw new Error(`Error fetching menu: ${errorText}`);
+        }
+
         const menu = await response.json();
         const menuContainer = document.getElementById('menu-items');
         menuContainer.innerHTML = ''; // Clear previous items
@@ -61,6 +86,7 @@ async function selectRestaurant(restaurantId) {
         document.getElementById('menu-section').style.display = 'block';
 
     } catch (error) {
+        console.error('Error fetching menu:', error.message);
         alert('Error fetching menu: ' + error.message);
     }
 }
